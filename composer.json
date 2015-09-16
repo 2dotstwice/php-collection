@@ -11,7 +11,9 @@
             "role": "Developer"
         }
     ],
-    "require": {},
+    "require": {
+        "php": ">=5.5"
+    },
     "require-dev": {
         "phpunit/phpunit": "~4.8",
         "phpunit/php-token-stream": "1.4.6",
