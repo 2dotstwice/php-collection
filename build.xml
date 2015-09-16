@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Collection" default="test">
+    <fileset id="php" dir=".">
+        <include name="src/**/*.php"/>
+        <include name="tests/**/*.php"/>
+    </fileset>
+
+    <target name="coding-standards">
+        <phpcodesniffer
+                standard="PSR2"
+                format="full"
+                allowedFileExtensions="php"
+                haltonerror="true">
+            <fileset refid="php"/>
+        </phpcodesniffer>
+    </target>
+
+    <target name="lint">
+        <phplint>
+            <fileset refid="php"/>
+        </phplint>
+    </target>
+
+    <!--
+        The PHPUnit task of Phing does not support white-lists for code
+        coverage. Therefore we use the exec task instead.
+    -->
+    <target name="unit-tests">
+        <exec
+                command="./vendor/bin/phpunit"
+                checkreturn="true"
+                passthru="true"/>
+    </target>
+
+    <target name="test">
+        <phingcall target="lint"/>
+        <phingcall target="unit-tests"/>
+        <phingcall target="coding-standards"/>
+    </target>
+
+    <target name="report-to-coveralls">
+        <exec
+                command="./vendor/bin/coveralls -v"
+                passthru="true"
+                checkreturn="true" />
+    </target>
+
+    <target name="githooks">
+        <copy file="contrib/pre-commit" todir=".git/hooks" />
+    </target>
+
+</project>

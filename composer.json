@@ -1,0 +1,39 @@
+{
+    "name": "2dotstwice/collection",
+    "description": " Library for creating collection classes with strict typing.",
+    "type": "library",
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "Bert Ramakers",
+            "email": "bert@2dotstwice.be",
+            "homepage": "http://2dotstwice.be",
+            "role": "Developer"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "~4.8",
+        "phpunit/php-token-stream": "1.4.6",
+        "squizlabs/php_codesniffer": "~2.3",
+        "phing/phing": "~2.11",
+        "satooshi/php-coveralls": "~0.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "TwoDotsTwice\\Collection\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TwoDotsTwice\\Collection\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.x-dev"
+        }
+    }
+}

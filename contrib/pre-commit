@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Redirect output to stderr.
+exec 1>&2
+
+# Ensure /usr/local/bin is in the executables PATH in order to find globally
+# installed tools like composer.
+# PHPStorm for example does not include /usr/local/bin in PATH when executing
+# git commands.
+export PATH=/usr/local/bin:$PATH;
+
+./vendor/bin/phing;
+
+if [ $? -ne 0 ]; then
+  exit 1;
+fi
