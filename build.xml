@@ -7,7 +7,7 @@
 
     <target name="coding-standards">
         <phpcodesniffer
-                standard="PSR2"
+                standard="phpcs-ruleset.xml"
                 format="full"
                 allowedFileExtensions="php"
                 haltonerror="true">
