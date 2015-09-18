@@ -10,9 +10,6 @@ interface CollectionInterface extends \IteratorAggregate
     /**
      * @param mixed $item
      *   Item to add to the Collection.
-     * @param string|null $key
-     *   Key to use for the new item. If not provided, the item will be added
-     *   to the end of the Collection.
      *
      * @return static
      *   Copy of the Collection, with the new item.
@@ -20,7 +17,22 @@ interface CollectionInterface extends \IteratorAggregate
      * @throws \InvalidArgumentException
      *   When the provided item is of an incorrect type.
      */
-    public function with($item, $key = null);
+    public function with($item);
+
+    /**
+     * @param string $key
+     *   Key to use for the new item. If not provided, the item will be added
+     *   to the end of the Collection.
+     * @param mixed $item
+     *   Item to add to the Collection.
+     *
+     * @return static
+     *   Copy of the Collection, with the new item.
+     *
+     * @throws \InvalidArgumentException
+     *   When the provided item is of an incorrect type.
+     */
+    public function withKey($key, $item);
 
     /**
      * @param mixed $item

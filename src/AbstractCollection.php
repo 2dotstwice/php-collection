@@ -20,18 +20,24 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * @inheritdoc
      */
-    public function with($item, $key = null)
+    public function with($item)
     {
         $this->guardObjectType($item);
 
         $copy = clone $this;
+        $copy->items[] = $item;
+        return $copy;
+    }
 
-        if (is_null($key)) {
-            $copy->items[] = $item;
-        } else {
-            $copy->items[$key] = $item;
-        }
+    /**
+     * @inheritdoc
+     */
+    public function withKey($key, $item)
+    {
+        $this->guardObjectType($item);
 
+        $copy = clone $this;
+        $copy->items[$key] = $item;
         return $copy;
     }
 
