@@ -46,8 +46,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_create_a_copy_with_a_new_item_for_a_specific_key()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $expected = [
             'foo1' => $this->foo1,
@@ -110,7 +110,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_allows_sub_classes_when_guarding_the_object_type_of_new_items()
     {
         $collection = (new FooCollection())
-            ->with($this->fooExtended, 'fooExtended');
+            ->withKey('fooExtended', $this->fooExtended);
 
         $expected = [
             'fooExtended' => $this->fooExtended,
@@ -143,7 +143,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_throws_an_exception_when_removing_an_unknown_item()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1');
+            ->withKey('foo1', $this->foo1);
 
         $this->setExpectedException(CollectionItemNotFoundException::class);
         $collection->without($this->foo2);
@@ -155,8 +155,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_remove_an_item_by_key()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $collection = $collection->withoutKey('foo1');
 
@@ -173,8 +173,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_throws_an_exception_when_removing_by_unknown_key()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $this->setExpectedException(CollectionKeyNotFoundException::class);
         $collection->withoutKey('foo3');
@@ -186,8 +186,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_return_an_item_by_key()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $this->assertEquals(
             $this->foo1,
@@ -206,7 +206,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_throws_an_exception_when_looking_for_an_item_with_an_unknown_key()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1');
+            ->withKey('foo1', $this->foo1);
 
         $this->setExpectedException(CollectionKeyNotFoundException::class);
         $collection->getByKey('foo2');
@@ -218,8 +218,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_return_the_key_for_an_item()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $this->assertEquals(
             'foo1',
@@ -238,7 +238,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_throws_an_exception_when_looking_for_the_key_of_an_unknown_item()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1');
+            ->withKey('foo1', $this->foo1);
 
         $this->setExpectedException(CollectionItemNotFoundException::class);
         $collection->getKeyFor($this->foo2);
@@ -250,8 +250,8 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_return_a_list_of_keys()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2);
 
         $expected = [
             'foo1',
@@ -297,9 +297,9 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function it_can_be_looped_over_like_an_array()
     {
         $collection = (new FooCollection())
-            ->with($this->foo1, 'foo1')
-            ->with($this->foo2, 'foo2')
-            ->with($this->fooExtended, 'fooExtended');
+            ->withKey('foo1', $this->foo1)
+            ->withKey('foo2', $this->foo2)
+            ->withKey('fooExtended', $this->fooExtended);
 
         $expected = [
             'foo1' => $this->foo1,
