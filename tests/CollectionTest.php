@@ -183,6 +183,28 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     /**
      * @test
      */
+    public function it_can_check_if_the_collection_contains_a_given_item()
+    {
+        $collection = (new FooCollection())
+            ->withKey('foo1', $this->foo1);
+
+        $this->assertTrue($collection->contains($this->foo1));
+    }
+
+    /**
+     * @test
+     */
+    public function it_can_check_if_the_collection_does_not_contain_a_given_item()
+    {
+        $collection = (new FooCollection())
+            ->withKey('foo1', $this->foo1);
+
+        $this->assertFalse($collection->contains($this->foo2));
+    }
+
+    /**
+     * @test
+     */
     public function it_can_return_an_item_by_key()
     {
         $collection = (new FooCollection())

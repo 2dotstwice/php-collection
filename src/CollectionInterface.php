@@ -62,6 +62,17 @@ interface CollectionInterface extends \IteratorAggregate
     public function withoutKey($key);
 
     /**
+     * @param mixed $item
+     *   Item to check if it's present in the collection.
+     *
+     * @return bool
+     *
+     * @throws \InvalidArgumentException
+     *   When the provided item is of an incorrect type.
+     */
+    public function contains($item);
+
+    /**
      * @param string $key
      *   Key to find the corresponding item for.
      *
