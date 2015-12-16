@@ -70,6 +70,23 @@ abstract class AbstractCollection implements CollectionInterface
     /**
      * @inheritdoc
      */
+    public function contains($item)
+    {
+        $this->guardObjectType($item);
+
+        $filtered = array_filter(
+            $this->items,
+            function ($itemToCompare) use ($item) {
+                return ($item == $itemToCompare);
+            }
+        );
+
+        return !empty($filtered);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function getByKey($key)
     {
         if (!isset($this->items[$key])) {
